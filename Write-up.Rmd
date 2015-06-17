@@ -10,17 +10,20 @@ Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible t
 
 ##Preparing
 
-
+Observing the data:
 ```{r}
 training <- read.csv("./pml-training.csv")
 testing <- read.csv("./pml-testing.csv")
 dim(training)
 sum(complete.cases(training))
 dim(testing)
+head(training)
+head(testing)
 ```
 
 ##Data Cleaning
 
+From the tables above, many columns contains NAs and these are disturbing when doing prediction.
 Remove data that is NAs. Some columms are not useful to the prediction.
 
 ```{r}
@@ -35,7 +38,12 @@ testing2 <- testing[, testingcols]
 dim(testing2)
 ```
 
+Now, we have 19622 observations and 53 variables.
+And the testing data set contains 20 observations and 52 variables.
+
 ##Random Forests for prediction
+
+Random forests are an ensemble learning method for classification, regression and other tasks, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. Random forests correct for decision trees' habit of overfitting to their training set.
 
 ```{r}
 library(randomForest)
